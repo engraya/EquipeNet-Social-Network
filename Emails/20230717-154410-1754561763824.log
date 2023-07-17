@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: engraya@django.com
+Date: Mon, 17 Jul 2023 14:44:10 -0000
+Message-ID: <168960505040.2352.9915881329262388074@Engraya>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/reset/MQ/brhnpl-3daf8b6fe92f3e3e9ebb181febbb06e7/
+
+Your username, in case you’ve forgotten: engraya
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
