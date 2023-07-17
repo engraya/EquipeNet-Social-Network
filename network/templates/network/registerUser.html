@@ -53,52 +53,71 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="m-sm-4">
+                                                              
+                            <div class="text-center aligned center items-center mt-4 my-5 aligned-items-center">
+                                <h3 class="h5 font-weight-bold-green opacity-90 mb-3 mb-sm-2 mr-sm-3">Sign Up with social account:</h3>
+                                <a class="social-btn sb-facebook mr-2 mb-2 btn-lg btn-blue" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with Facebook">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a class="social-btn sb-twitter mr-2 mb-2 btn-lg" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with Twitter">
+                                    <i class="fa fa-twitter"></i> 
+                                </a>
+                                <a class="social-btn sb-linkedin mr-2 mb-2 btn-lg" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with LinkedIn">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a class="social-btn sb-instagram mr-2 mb-2 btn-lg" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with instagram">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                                <a class="social-btn sb-github mr-2 mb-2 btn-lg" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with GitHub">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                                <a class="social-btn sb-google mr-2 mb-2 btn-lg" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with google">
+                                    <i class="fa fa-google"></i>
+                                </a>
+                            </div>
+                            <div class="text-center aligned center items-center mt-4 my-5 aligned-items-center">
+                                <style>
+                                    h5{
+                                        color: darkgreen;
+                                    }
+                                </style>
+                                {% for message in messages %}
+                                    <h5>{{message}}</h5>
+                                {% endfor %}
+                            </div>
                             <form method="POST">
                                 {% csrf_token %}
-                                <div class="form-group">
+                                <div class="form-group p-2">
                                     <label>First Name</label>
                                     <!-- <input class="form-control form-control-lg" type="text" name="first_name" placeholder="Enter your First Name"> -->
                                     {{form.first_name}}
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group p-2">
                                     <label>Last Name</label>
                                     <!-- <input class="form-control form-control-lg" type="text" name="last_name" placeholder="Enter your Last Name"> -->
                                     {{form.last_name}}
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group p-2">
                                     <label>Email</label>
                                     <!-- <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your Email"> -->
                                     {{form.email}}
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group p-2">
                                     <label>Username</label>
                                     <!-- <input class="form-control form-control-lg" type="text" name="username" placeholder="Enter your Username"> -->
                                     {{form.username}}
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group p-2">
                                     <label>Password</label>
                                     <!-- <input class="form-control form-control-lg" type="password" name="password1" placeholder="Enter your password"> -->
                                     {{form.password1}}
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group p-2">
                                     <label>Confirm Password</label>
                                     <!-- <input class="form-control form-control-lg" type="password" name="password2" placeholder="Confirm your password"> -->
                                     {{form.password2}}
                                 </div>
-                                <div class="d-sm-flex align-items-center py-3">
-                                    <h3 class="h6 font-weight-semibold opacity-70 mb-3 mb-sm-2 mr-sm-3">Sign Up With social account:</h3>
-                                    <div>
-                                        <a class="social-btn sb-facebook mr-2 mb-2" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with Facebook">
-                                            <i class="fa fa-facebook"></i>
-                                        </a>
-                                        <a class="social-btn sb-twitter mr-2 mb-2" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with Twitter">
-                                            <i class="fa fa-twitter"></i> 
-                                        </a>
-                                        <a class="social-btn sb-linkedin mr-2 mb-2" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with LinkedIn">
-                                            <i class="fa fa-linkedin"></i>
-                                        </a>
-                                    </div>
-                                </div>
+
                                 <div class="text-center mt-3">
                                     <button type="submit" class="btn btn-md btn-success">Sign Up</button>
                                 </div>

@@ -45,7 +45,7 @@ def signIn(request):
                 messages.error(request, "Invalid Credentials Entered..Try again Later!!")
 
         else:
-            messages.error(request, "Invalid Username or Password Used....Try again Later!!!")
+            messages.error(request, "Invalid Username or Password used....Try again Later!!!")
     else:
         form = UserLoginForm()
     context = {'form' : form}

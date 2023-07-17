@@ -62,38 +62,63 @@
                             <div class="text-center">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Andrew Jones" class="img-fluid rounded-circle" width="132" height="132">
                             </div>
+                            <div class="align-items-center">
+                                  
+                                <div class="text-center aligned center items-center mt-4 my-5 aligned-items-center">
+                                    <h3 class="h5 font-weight-bold-green opacity-90 mb-3 mb-sm-2 mr-sm-3">Sign In with social account:</h3>
+                                    <a class="social-btn sb-facebook mr-2 mb-2 btn-lg btn-blue" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with Facebook">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                    <a class="social-btn sb-twitter mr-2 mb-2 btn-lg" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with Twitter">
+                                        <i class="fa fa-twitter"></i> 
+                                    </a>
+                                    <a class="social-btn sb-linkedin mr-2 mb-2 btn-lg" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with LinkedIn">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                    <a class="social-btn sb-instagram mr-2 mb-2 btn-lg" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with instagram">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                    <a class="social-btn sb-github mr-2 mb-2 btn-lg" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with GitHub">
+                                        <i class="fa fa-github"></i>
+                                    </a>
+                                    <a class="social-btn sb-google mr-2 mb-2 btn-lg" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with google">
+                                        <i class="fa fa-google"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-center aligned center items-center mt-4 my-5 aligned-items-center">
+                                <style>
+                                    h5{
+                                        color: darkgreen;
+                                    }
+                                </style>
+                                {% for message in messages %}
+                                    <h5>{{message}}</h5>
+                                {% endfor %}
+                            </div>
                             <form method="POST">
                                 {% csrf_token %}
-                                <div class="form-group">
+                                <div class="form-group p-2">
                                     <label>Username</label>
                                     <!-- <input class="form-control form-control-lg" type="text" name="username" placeholder="Enter your Username"> -->
                                     {{form.username}}
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group p-2">
                                     <label>Password</label>
                                     <!-- <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password"> -->
                                     {{form.password}}
                                 </div>
-                                <small><a href="{% url 'reset_password' %}">Forgot password?</a></small>
-                                <div class="d-sm-flex align-items-center py-3">
-                                    <h3 class="h6 font-weight-semibold opacity-70 mb-3 mb-sm-2 mr-sm-3">Sign In With social account:</h3>
-                                    <div>
-                                        <a class="social-btn sb-facebook mr-2 mb-2" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with Facebook">
-                                            <i class="fa fa-facebook"></i>
-                                        </a>
-                                        <a class="social-btn sb-twitter mr-2 mb-2" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with Twitter">
-                                            <i class="fa fa-twitter"></i> 
-                                        </a>
-                                        <a class="social-btn sb-linkedin mr-2 mb-2" href="#" data-toggle="tooltip" title="" data-original-title="Sign in with LinkedIn">
-                                            <i class="fa fa-linkedin"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                                <small class="h5 font-weight-bold-green opacity-90 mb-3 mb-sm-2 mr-sm-3 p-3"><a href="{% url 'reset_password' %}">Forgot password?</a></small>
+                                
+    
                                 <div class="text-center mt-3">
                                     <button type="submit" class="btn btn-md btn-success">Sign in</button>
                                 </div>
                             </form>
                             <hr>
+                            <div class="text-center mt-4">
+                                <h5>New User?</h5>
+                            </div>
                             <div class="text-center mt-3">
                                 <a href="{% url 'register' %}" class="btn btn-md btn-secondary">Sign Up</a>
                             </div>
