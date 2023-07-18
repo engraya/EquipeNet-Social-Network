@@ -3,13 +3,14 @@ from django.http import HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserLoginForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
 def index(request):
     return HttpResponse("Social Media Page")
 
-
+@login_required(login_url='login')
 def homeFeeds(request):
     return render(request, 'network/homeFeeds.html')
 
@@ -51,7 +52,7 @@ def signIn(request):
     context = {'form' : form}
     return render(request, 'network/loginUser.html', context)
 
-        
+@login_required(login_url='login')       
 def signOut(request):
     logout(request)
     messages.info(request, "Successfully Logged out!!")
