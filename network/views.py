@@ -59,4 +59,13 @@ def signOut(request):
     return redirect("login")
 
 
+def userSettings(request):
+    context = {}
+    return render(request, 'network/userSettings.html', context)
+
+def userProfile(request):
+    context = {}
+    return render(request, 'network/UserProfile.html', context)
+    
+
 
