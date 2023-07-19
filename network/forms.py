@@ -40,6 +40,13 @@ class UserLoginForm(AuthenticationForm):
 
 
 class UserSettingsForm(ModelForm):
+
     class Meta:
         model = Profile
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(UserSettingsForm, self).__init__(*args, **kwargs)
+
+        for key, value in self.fields.items():
+            value.widget.attrs.update({'class' : 'form-control'})

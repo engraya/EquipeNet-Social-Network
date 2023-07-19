@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from .forms import UserRegistrationForm, UserLoginForm
+from .forms import UserRegistrationForm, UserLoginForm, UserSettingsForm
 from django.contrib.auth.decorators import login_required
+from .models import Profile
 # Create your views here.
 
 
@@ -60,12 +61,15 @@ def signOut(request):
 
 
 def userSettings(request):
-    context = {}
+    user = request.user
+    form = UserSettingsForm(instance=user)
+    context = {'form' : form}
     return render(request, 'network/userSettings.html', context)
 
 def userProfile(request):
-    context = {}
-    return render(request, 'network/UserProfile.html', context)
+    user = request.user
+    context = {'user' : user}
+    return render(request, 'network/userProfile.html', context)
     
 
 
