@@ -39,14 +39,31 @@ class UserLoginForm(AuthenticationForm):
         fields = '__all__'
 
 
-class UserSettingsForm(ModelForm):
+class ProfileUpdateForm(ModelForm):
 
     class Meta:
         model = Profile
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
-        super(UserSettingsForm, self).__init__(*args, **kwargs)
+        super(ProfileUpdateForm, self).__init__(*args, **kwargs)
 
         for key, value in self.fields.items():
             value.widget.attrs.update({'class' : 'form-control'})
+
+# Create a UserUpdateForm to update a username and email
+class UserUpdateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter your First Name'})
+        self.fields['last_name'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter your Last Name'})
+        self.fields['username'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter your Username'})
+        self.fields['email'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter your Email'})
+
+
+    email = forms.EmailField()
+    
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name','username', 'email']

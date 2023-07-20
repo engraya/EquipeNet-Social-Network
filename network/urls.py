@@ -8,8 +8,12 @@ urlpatterns = [
     path('signUp', views.signUp, name='register'),
     path('signIn', views.signIn, name='login'),
     path('signOut', views.signOut, name='logout'),
-    path("usersettings", views.userSettings, name="usersettings"),
-    path("profile", views.userProfile, name="profile"),
+    path("profilesettings", views.profileSettings, name="profilesettings"),
+    path("userprofile/<str:pk>", views.userProfile, name="userprofile"),
+    path("profile", views.mainProfile, name="profile"),
+    path("uploadPost", views.uploadPost, name="upload"),
+    path('likePost', views.likePost, name="like"),
+    path('followUser', views.followUser, name="follow"),
 
 
 
