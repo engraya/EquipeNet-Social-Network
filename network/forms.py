@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from .models import Profile
+from .models import Profile, Group
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -67,3 +67,9 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name','username', 'email']
+
+class GroupForm(ModelForm):
+    class Meta:
+        model = Group
+        fields = '__all__'
+        exclude = ['groupAdmin', 'members']

@@ -3,9 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm, UserLoginForm
+from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm, UserLoginForm, GroupForm
 from django.contrib.auth.decorators import login_required
-from .models import Post, Profile, LikePost, FollwersCount
+from .models import Post, Profile, LikePost, FollwersCount, Issue, Group, Message
 # Create your views here.
 
 
@@ -14,7 +14,7 @@ def index(request):
 
 @login_required(login_url='login')
 def homeFeeds(request):
-    userObject = User.objects.get(username=request.username)
+    userObject = User.objects.get(username=request.user.username)
     userProfile = Profile.objects.get(user=userObject)
     post = Post.objects.all()
 
@@ -149,6 +149,94 @@ def followUser(request):
             newFollower = FollwersCount.objects.create(follower=follower, user=user)
             newFollower.save()
             return redirect('/')
+        
+def createGroup(request):
+    form = GroupForm()
+    issues = Issue.objects.all()
+    if request.method == 'POST':
+        issueName = request.POST.get('issue')
+        issue, created = Issue.objects.get_or_create(name=issueName)
+
+        Group.objects.create(
+            groupAdmin = request.user,
+            issue=issue,
+            name = request.POST.get('name'),
+            description=request.POST.get('description'),
+        )
+        return redirect('homefeeds')
+    
+    context = {'form' : form, 'issues' : issues}
+    return render(request, 'network/groupForm.html', context)
+
+
+def group(request, pk):
+    group = Group.objects.get(id=pk)
+    groupMessages = Group.message_set.all()
+    groupMembers = Group.members.all()
+
+    if request.method == 'POST':
+        message = Message.objects.create(
+            user = request.user,
+            group=group,
+            body=request.POST.get('body')
+        )
+        group.members.add(request.user)
+        return redirect('group', pk=group.id)
+    
+    context = {'group' : group, 'groupMessages' : groupMessages, 'groupMembers' : groupMembers}
+    return render(request, 'network/group.html', context)
 
 
 
+
+def updateGroup(request, pk):
+    group = Group.objects.get(id=pk)
+    form = GroupForm(instance=group)
+    issues = Issue.objects.all()
+    if request.user != group.groupAdmin:
+        return HttpResponse('Sorry, You are not allowed here!!!!')
+    
+    if request.method == 'POST':
+        issueName = request.POST.get('issue')
+        issue, created = Issue.objects.get_or_create(name=issueName)
+        group.name = request.POST.get('name')
+        group.issue = issue
+        group.description = request.POST.get('description')
+        group.save()
+        return redirect('homefeeds')
+    
+    context = {'form':form, 'issues' : issues, 'group' : group}
+    return render(request, 'network/groupForm.html', context)
+
+
+
+def deleteGroup(request, pk):
+    group = Group.objects.all(id=pk)
+    if request.user != group.groupAdmin:
+        return HttpResponse('Sorry, You are not allowed here!!!!')
+    
+    if request.method == 'POST':
+        group.delete()
+        return redirect('homefeeds')
+    context = {'obj' : group}
+    return render(request, 'network/delete.html', context)
+
+
+def deleteMessage(request, pk):
+    message = Message.objects.get(id=pk)
+
+    if request.user != message.user:
+        return HttpResponse('Sorry, You are not allowed here!!!!')
+    
+    if request.method == 'POST':
+        message.delete()
+        return redirect('homefeeds')
+    context = {'obj' : message}
+    return render(request, 'network/delete.html', context)
+    
+    
+
+def communityPage(request):
+    groupMesssages = Message.objects.all()
+    context = {'groupMessages' : groupMesssages}
+    return render(request, 'network/activity.html', context)
