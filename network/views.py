@@ -12,7 +12,7 @@ from .models import Post, Profile, LikePost, FollwersCount, Issue, Group, Messag
 def index(request):
     return HttpResponse("Social Media Page")
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def homeFeeds(request):
     userObject = User.objects.get(username=request.user.username)
     userProfile = Profile.objects.get(user=userObject)
@@ -60,7 +60,7 @@ def signIn(request):
     context = {'form' : form}
     return render(request, 'network/loginUser.html', context)
 
-@login_required(login_url='login')       
+# @login_required(login_url='login')       
 def signOut(request):
     logout(request)
     messages.info(request, "Successfully Logged out!!")
@@ -234,7 +234,7 @@ def deleteMessage(request, pk):
     context = {'obj' : message}
     return render(request, 'network/delete.html', context)
     
-    
+
 
 def communityPage(request):
     groupMesssages = Message.objects.all()
